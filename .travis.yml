@@ -25,6 +25,7 @@ install:
 
 before_script:
   - pushd harfbuzz-2.3.1
+  - find . -type f -exec touch {} +
   - git init
   - git add .
   - git commit -m initial
