@@ -36,8 +36,9 @@ before_script:
 script:
   - pushd $(mktemp -d)
   - $TRAVIS_BUILD_DIR/harfbuzz-2.3.1/configure $CONFIGURE_OPTS
+  - pushd $TRAVIS_BUILD_DIR/harfbuzz-2.3.1; git diff --exit-code; popd
   - make
+  - pushd $TRAVIS_BUILD_DIR/harfbuzz-2.3.1; git diff --exit-code; popd
   - sudo make install
+  - pushd $TRAVIS_BUILD_DIR/harfbuzz-2.3.1; git diff --exit-code; popd
   - popd
-  - cd harfbuzz-2.3.1
-  - git diff --exit-code
