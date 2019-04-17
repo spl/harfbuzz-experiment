@@ -1,0 +1,47 @@
+language: cpp
+
+cache:
+  directories:
+    - download
+
+env:
+  global:
+    - CONFIGURE_OPTS="--enable-static --disable-shared --without-icu --without-freetype --without-glib --with-coretext=auto"
+
+matrix:
+  include:
+    - os: linux
+      compiler: gcc
+    - os: linux
+      compiler: gcc
+    - os: linux
+      compiler: gcc
+    - os: linux
+      compiler: gcc
+
+install:
+  - wget -nc -P download https://github.com/harfbuzz/harfbuzz/releases/download/2.3.1/harfbuzz-2.3.1.tar.bz2
+  - tar jxf download/harfbuzz-2.3.1.tar.bz2
+
+before_script:
+  - pushd harfbuzz-2.3.1
+  - ./autogen.sh
+  - git init
+  - git add .
+  - git commit -m initial
+  - popd
+
+script:
+  - pushd $(mktemp -d)
+  - $TRAVIS_BUILD_DIR/harfbuzz-2.3.1/configure $CONFIGURE_OPTS
+  - make
+  - sudo make install
+  - popd
+  - cd harfbuzz-2.3.1
+  - git diff
+
+addons:
+  apt:
+    packages:
+      - pkg-config
+      - ragel
