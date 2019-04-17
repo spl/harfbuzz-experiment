@@ -25,7 +25,6 @@ install:
 
 before_script:
   - pushd harfbuzz-2.3.1
-  - ./autogen.sh
   - git init
   - git add .
   - git commit -m initial
@@ -39,9 +38,3 @@ script:
   - popd
   - cd harfbuzz-2.3.1
   - git diff
-
-addons:
-  apt:
-    packages:
-      - pkg-config
-      - ragel
