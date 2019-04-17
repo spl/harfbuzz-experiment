@@ -27,7 +27,7 @@ before_script:
   - pushd harfbuzz-2.3.1
   - find . -type f -exec touch {} +
   - sleep 1
-  - make -f $TRAVIS_BUILD_DIR/harfbuzz-sys/makefile.touch touch HARFBUZZ="$PWD"
+  - make -f $TRAVIS_BUILD_DIR/makefile.touch touch HARFBUZZ="$PWD"
   - git init
   - git add .
   - git commit -m initial
