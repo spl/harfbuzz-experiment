@@ -40,4 +40,4 @@ script:
   - sudo make install
   - popd
   - cd harfbuzz-2.3.1
-  - git diff
+  - git diff --exit-code
